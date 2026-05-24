@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PaperBold+</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body class="upload-page">
+
+  <div class="upload-wrapper">
+    <header class="upload-header">
+      <span class="eyebrow">AI Research Tool</span>
+      <h1 class="logo">Paper<em>Bold</em><sup>+</sup></h1>
+      <p class="tagline">Summarize · Quiz · Q&amp;A · Auto-save — powered by Claude</p>
+    </header>
+
+    <!-- Drop zone -->
+    <div id="drop-zone" class="drop-zone">
+      <div class="drop-icon">📄</div>
+      <div class="drop-title">Drop your PDF here</div>
+      <div class="drop-sub">or click to browse files</div>
+      <input id="file-input" type="file" accept=".pdf" hidden/>
+    </div>
+
+    <div id="error-msg" class="error-msg" hidden></div>
+
+    <!-- Progress -->
+    <div id="progress-box" class="progress-box" hidden>
+      <div class="spinner"></div>
+      <div id="progress-text" class="progress-text">Reading paper…</div>
+      <div class="progress-sub">Usually 20–40 seconds</div>
+    </div>
+
+    <!-- Feature chips -->
+    <div class="chips">
+      <span class="chip">📝 Auto summary</span>
+      <span class="chip">🧠 5-question quiz</span>
+      <span class="chip">💬 Q&amp;A chat</span>
+      <span class="chip">💾 Download .md</span>
+      <span class="chip">📁 Auto-saved locally</span>
+    </div>
+  </div>
+
+  <script>
+    const dropZone   = document.getElementById("drop-zone");
+    const fileInput  = document.getElementById("file-input");
+    const progressBox= document.getElementById("progress-box");
+    const progressTxt= document.getElementById("progress-text");
+    const errorMsg   = document.getElementById("error-msg");
+
+    const statusMsgs = [
+      "Extracting paper text…",
+      "Generating summary & findings…",
+      "Building quiz questions…",
+      "Saving files to disk…",
+    ];
+
+    dropZone.addEventListener("click", () => fileInput.click());
+
+    dropZone.addEventListener("dragover", e => {
+      e.preventDefault();
+      dropZone.classList.add("drag-over");
+    });
+    dropZone.addEventListener("dragleave", () => dropZone.classList.remove("drag-over"));
+    dropZone.addEventListener("drop", e => {
+      e.preventDefault();
+      dropZone.classList.remove("drag-over");
+      const file = e.dataTransfer.files[0];
+      if (file) uploadFile(file);
+    });
+
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files[0]) uploadFile(fileInput.files[0]);
+    });
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.hidden = false;
+      progressBox.hidden = true;
+      dropZone.hidden = false;
+    }
+
+    async function uploadFile(file) {
+      if (!file.name.toLowerCase().endsWith(".pdf")) {
+        showError("Please upload a PDF file.");
+        return;
+      }
+
+      errorMsg.hidden = true;
+      dropZone.hidden = true;
+      progressBox.hidden = false;
+
+      // Cycle through status messages while waiting
+      let msgIdx = 0;
+      const interval = setInterval(() => {
+        msgIdx = (msgIdx + 1) % statusMsgs.length;
+        progressTxt.textContent = statusMsgs[msgIdx];
+      }, 6000);
+
+      const formData = new FormData();
+      formData.append("pdf_file", file);
+
+      try {
+        const res  = await fetch("/upload", { method: "POST", body: formData });
+        const data = await res.json();
+        clearInterval(interval);
+
+        if (!res.ok || data.error) {
+          showError(data.error || "Upload failed. Please try again.");
+          return;
+        }
+        // Redirect to viewer
+        window.location.href = `/viewer/${data.paper_id}`;
+      } catch (err) {
+        clearInterval(interval);
+        showError("Network error: " + err.message);
+      }
+    }
+  </script>
+</body>
+</html>

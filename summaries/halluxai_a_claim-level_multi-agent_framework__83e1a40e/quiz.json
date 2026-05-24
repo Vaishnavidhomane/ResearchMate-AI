@@ -1,0 +1,57 @@
+[
+  {
+    "question": "What is the primary goal of the HalluXAI framework?",
+    "options": [
+      "To generate human-like responses",
+      "To detect hallucinations in large language models",
+      "To improve the efficiency of language models",
+      "To reduce the cost of language model development"
+    ],
+    "answer": 1,
+    "explanation": "The primary goal of HalluXAI is to detect hallucinations in large language models, which is a critical task to ensure the accuracy and reliability of AI-generated responses."
+  },
+  {
+    "question": "How does HalluXAI improve upon existing hallucination detection tools?",
+    "options": [
+      "By using a single, complex model",
+      "By providing simple yes/no verdicts",
+      "By decomposing responses into individual claims and providing detailed explanations",
+      "By relying on paid, private AI services"
+    ],
+    "answer": 2,
+    "explanation": "HalluXAI improves upon existing tools by decomposing responses into individual claims and providing detailed explanations, which enables users to understand why a particular claim is marked as hallucinated."
+  },
+  {
+    "question": "What is the role of evidence retrieval in the HalluXAI framework?",
+    "options": [
+      "To generate responses",
+      "To detect hallucinations",
+      "To provide explanations",
+      "To collect relevant evidence to support or contradict claims"
+    ],
+    "answer": 3,
+    "explanation": "Evidence retrieval plays a critical role in the HalluXAI framework, as it collects relevant evidence to support or contradict claims, which is essential for accurate hallucination detection and explanation generation."
+  },
+  {
+    "question": "What is the benefit of using a multi-agent approach in HalluXAI?",
+    "options": [
+      "Improved efficiency",
+      "Increased complexity",
+      "Enhanced accuracy",
+      "Reduced interpretability"
+    ],
+    "answer": 2,
+    "explanation": "The multi-agent approach in HalluXAI enables the framework to assign demanding tasks to specialized agents, which improves the overall accuracy and effectiveness of the system."
+  },
+  {
+    "question": "What is the significance of the HalluXAI framework being open-source?",
+    "options": [
+      "It reduces the cost of development",
+      "It improves the efficiency of the framework",
+      "It enables researchers to test and reproduce the results",
+      "It increases the complexity of the framework"
+    ],
+    "answer": 2,
+    "explanation": "The HalluXAI framework being open-source enables researchers to test and reproduce the results, which is essential for ensuring the transparency, accountability, and reliability of AI systems."
+  }
+]
