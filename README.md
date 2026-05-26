@@ -1,15 +1,11 @@
 # ResearchMate-AI
-Upload any research paper PDF and get an AI-powered summary, key findings, quiz, and chat assistant — free, powered by Groq + LLaMA 3.3
+Upload any research paper PDF and get an AI-powered summary, key findings, quiz, and chat assistant — free
 <div align="center">
 
 # 📄 ResearchMate AI
 
 ### Upload any research paper PDF and instantly get AI-powered summaries, key findings, quizzes, and a chat assistant — completely free.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-blue?style=for-the-badge)](https://researchmate-ai-4sdf.onrender.com)
-[![Python](https://img.shields.io/badge/Python-3.11-yellow?style=for-the-badge&logo=python)](https://python.org)
-[![Flask](https://img.shields.io/badge/Flask-3.0-black?style=for-the-badge&logo=flask)](https://flask.palletsprojects.com)
-[![Groq](https://img.shields.io/badge/Groq-LLaMA%203.3-orange?style=for-the-badge)](https://groq.com)
 
 </div>
 
@@ -54,7 +50,7 @@ No subscriptions. No credit card. 100% free.
 | Layer | Technology |
 |-------|------------|
 | Backend | Python, Flask |
-| AI Model | LLaMA 3.3 70B via Groq API |
+| AI Model | GROQ + LLAMA 3.3  |
 | PDF Parsing | PyPDF2 |
 | Frontend | HTML, CSS, JavaScript |
 | Hosting | Render |
