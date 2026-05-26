@@ -50,7 +50,7 @@ No subscriptions. No credit card. 100% free.
 | Layer | Technology |
 |-------|------------|
 | Backend | Python, Flask |
-| AI Model | LLaMA 3.3 70B via Groq API |
+| AI Model | Google Gemini 1.5 Flash |
 | PDF Parsing | PyPDF2 |
 | Frontend | HTML, CSS, JavaScript |
 | Hosting | Render |
